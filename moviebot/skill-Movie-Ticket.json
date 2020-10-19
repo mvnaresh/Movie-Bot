@@ -1,0 +1,822 @@
+{
+  "intents": [
+    {
+      "intent": "BookTickets",
+      "examples": [
+        {
+          "text": "I want to Book my tickets"
+        },
+        {
+          "text": "Please book my tickets"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Enquiry",
+      "examples": [
+        {
+          "text": "Can you show the list of Movies"
+        },
+        {
+          "text": "Enquiry"
+        },
+        {
+          "text": "Movies List"
+        },
+        {
+          "text": "what are the offers available"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Greetings",
+      "examples": [
+        {
+          "text": "Good Afternoon"
+        },
+        {
+          "text": "Good Day"
+        },
+        {
+          "text": "Good Evening"
+        },
+        {
+          "text": "Good Morning"
+        },
+        {
+          "text": "Hello"
+        },
+        {
+          "text": "Hi"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "Movies",
+      "examples": [
+        {
+          "text": "Movies List"
+        },
+        {
+          "text": "Platinum Class @ Rs. 250/-"
+        },
+        {
+          "text": "timings"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "booktickets",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Book Tickets",
+          "synonyms": [
+            "Bookings"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Tickets",
+          "synonyms": [
+            "bookings",
+            "ticket"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "email",
+      "values": [
+        {
+          "type": "patterns",
+          "value": "email",
+          "patterns": [
+            "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "enquiry",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "enquiry",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "Movies List",
+          "synonyms": [
+            "List"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Offers",
+          "synonyms": [
+            "discount",
+            "discounts"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "greetings",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Good Afternoon",
+          "synonyms": [
+            "GA",
+            "gud aftn"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Day",
+          "synonyms": [
+            "GD",
+            "goodday"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Evening",
+          "synonyms": [
+            "GE",
+            "gud eve"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Good Morning",
+          "synonyms": [
+            "GM",
+            "gud mrning"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Hello",
+          "synonyms": [
+            "Hello"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Hi",
+          "synonyms": [
+            "Hey",
+            "yeah"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "movieslist",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Movies List",
+          "synonyms": [
+            "Movie List",
+            "movies",
+            "movies screening",
+            "screening"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Rate",
+          "synonyms": [
+            "price",
+            "prices",
+            "rate"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Timings",
+          "synonyms": [
+            "Movie Schedule",
+            "Schedule",
+            "timing"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "payment",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Card",
+          "synonyms": []
+        },
+        {
+          "type": "synonyms",
+          "value": "UPI",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "rate",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Price",
+          "synonyms": []
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sys-number",
+      "values": [],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Anything else",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "I didn't understand. You can try rephrasing."
+              },
+              {
+                "text": "Can you reword your statement? I'm not understanding."
+              },
+              {
+                "text": "I didn't get your meaning."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Anything else",
+      "previous_sibling": "node_4_1603121832616",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "We Accept Card/UPI mode of payment"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_4_1603124376573",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1603124376589",
+      "previous_sibling": "handler_1_1603124376589"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_4_1603121832616",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1603123792414",
+      "previous_sibling": "slot_4_1603124376573"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1603124376573",
+      "context": {
+        "payment": "@payment"
+      },
+      "conditions": "@payment",
+      "event_name": "input",
+      "dialog_node": "handler_1_1603124376589"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1603124290815",
+      "context": {
+        "number": "@sys-number"
+      },
+      "conditions": "@sys-number",
+      "event_name": "input",
+      "dialog_node": "handler_3_1603124290838"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1603124170798",
+      "context": {
+        "booktickets": "@booktickets"
+      },
+      "conditions": "@booktickets",
+      "event_name": "input",
+      "dialog_node": "handler_7_1603124170816"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Can you provide me the Movie, Timing and Class"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_2_1603124170798",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1603124170816",
+      "previous_sibling": "handler_7_1603124170816"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "How many tickets do you want"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_7_1603124290815",
+      "event_name": "focus",
+      "dialog_node": "handler_9_1603124290838",
+      "previous_sibling": "handler_3_1603124290838"
+    },
+    {
+      "type": "standard",
+      "title": "Rate",
+      "output": {
+        "generic": [
+          {
+            "title": "Available Category",
+            "options": [
+              {
+                "label": "Platinum Class",
+                "value": {
+                  "input": {
+                    "text": "Platinum Class @ Rs. 250/-"
+                  }
+                }
+              },
+              {
+                "label": "Gold Class",
+                "value": {
+                  "input": {
+                    "text": "Gold Class @ Rs. 150/-"
+                  }
+                }
+              },
+              {
+                "label": "Silver Class",
+                "value": {
+                  "input": {
+                    "text": "Silver Class @ Rs. 100/-"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_9_1603122490015",
+      "conditions": "@movieslist:Rate",
+      "dialog_node": "node_1_1603123077567"
+    },
+    {
+      "type": "standard",
+      "title": "Movies",
+      "output": {
+        "generic": [
+          {
+            "title": "Movies List",
+            "options": [
+              {
+                "label": "Silence",
+                "value": {
+                  "input": {
+                    "text": "Silence"
+                  }
+                }
+              },
+              {
+                "label": "Android Kattappa",
+                "value": {
+                  "input": {
+                    "text": "Android Kattappa"
+                  }
+                }
+              },
+              {
+                "label": "V",
+                "value": {
+                  "input": {
+                    "text": "V"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "conditions": "#Movies || @movieslist",
+      "dialog_node": "node_3_1603120618935",
+      "previous_sibling": "node_4_1603096361125"
+    },
+    {
+      "type": "standard",
+      "title": "Enquiry",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Enquiry || @enquiry",
+      "dialog_node": "node_4_1603096361125",
+      "previous_sibling": "node_9_1603094543038"
+    },
+    {
+      "type": "frame",
+      "title": "Book Tickets",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thank you for Booking Tickets your $number Tickets are Booked, Please pay using $payment and payment receipt is sent to your email Please check"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "conditions": "#BookTickets || @booktickets",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_4_1603121832616",
+      "digress_out": "allow_all",
+      "previous_sibling": "node_3_1603120618935",
+      "digress_out_slots": "allow_returning"
+    },
+    {
+      "type": "standard",
+      "title": "Deleting Context",
+      "output": {
+        "deleted": "<?context.remove('booktickets')?><?context.remove('number')?><?context.remove('payment')?><?context.remove('email')?>",
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1603121832616",
+      "conditions": "true",
+      "dialog_node": "node_4_1603126605620"
+    },
+    {
+      "type": "standard",
+      "title": "email",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello, Thanks for providing your mail id $email is used for further references"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "Welcome",
+      "context": {
+        "email": "@email.literal"
+      },
+      "conditions": "@email",
+      "dialog_node": "node_5_1603128459007"
+    },
+    {
+      "type": "standard",
+      "title": "Greetings",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#Greetings || @greetings",
+      "dialog_node": "node_9_1603094543038",
+      "previous_sibling": "Welcome"
+    },
+    {
+      "type": "standard",
+      "title": "Show Timings",
+      "output": {
+        "generic": [
+          {
+            "title": "Available Show Timings",
+            "options": [
+              {
+                "label": "11:30 AM",
+                "value": {
+                  "input": {
+                    "text": "11:30 AM"
+                  }
+                }
+              },
+              {
+                "label": "2:30 PM",
+                "value": {
+                  "input": {
+                    "text": "2:30 PM"
+                  }
+                }
+              },
+              {
+                "label": "6:30 PM",
+                "value": {
+                  "input": {
+                    "text": "6:30 PM"
+                  }
+                }
+              },
+              {
+                "label": "9:30 PM",
+                "value": {
+                  "input": {
+                    "text": "9:30 PM"
+                  }
+                }
+              }
+            ],
+            "response_type": "option"
+          }
+        ]
+      },
+      "parent": "node_3_1603120618935",
+      "conditions": "@movieslist:Timings",
+      "dialog_node": "node_9_1603122490015"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Day, Please explore the movie that you want to book the ticket"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1603094543038",
+      "conditions": "@greetings:(Good Day)",
+      "dialog_node": "response_10_1603094837734"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Welcome to Naresh Movies, Please select the Movie"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1603096361125",
+      "conditions": "@enquiry:enquiry",
+      "dialog_node": "response_10_1603119943476"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Book Three Tickets and Get One Ticket Free"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1603096361125",
+      "conditions": "@enquiry:Offers",
+      "dialog_node": "response_10_1603119969097",
+      "previous_sibling": "response_10_1603119943476"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hi, How can i Help You"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1603094543038",
+      "conditions": "anything_else",
+      "dialog_node": "response_1_1603119528365",
+      "previous_sibling": "response_7_1603095422224"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Afternoon, Please explore the movie that you want to book the ticket"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1603094543038",
+      "conditions": "@greetings:(Good Afternoon)",
+      "dialog_node": "response_5_1603094900435",
+      "previous_sibling": "response_8_1603094882524"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Evening, Please explore the movie that you want to book the ticket"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1603094543038",
+      "conditions": "@greetings:(Good Evening)",
+      "dialog_node": "response_6_1603094921025",
+      "previous_sibling": "response_5_1603094900435"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Hello, Please explore the movie that you want to book the ticket"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1603094543038",
+      "conditions": "@greetings:Hello",
+      "dialog_node": "response_7_1603095422224",
+      "previous_sibling": "response_6_1603094921025"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Good Morning, Please explore the movie that you want to book the ticket"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1603094543038",
+      "conditions": "@greetings:(Good Morning)",
+      "dialog_node": "response_8_1603094882524",
+      "previous_sibling": "response_10_1603094837734"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1603121832616",
+      "variable": "$booktickets",
+      "dialog_node": "slot_2_1603124170798",
+      "previous_sibling": "node_4_1603126605620"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1603121832616",
+      "variable": "$payment",
+      "dialog_node": "slot_4_1603124376573",
+      "previous_sibling": "slot_7_1603124290815"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1603121832616",
+      "variable": "$number",
+      "dialog_node": "slot_7_1603124290815",
+      "previous_sibling": "slot_2_1603124170798"
+    },
+    {
+      "type": "standard",
+      "title": "Welcome",
+      "output": {
+        "generic": [
+          {
+            "title": "Welcome to Naresh Cinema's, How can i Help You?",
+            "source": "https://static.india.com/wp-content/uploads/2020/09/show-luggage-cinema-theatre.jpg",
+            "response_type": "image"
+          }
+        ]
+      },
+      "metadata": {
+        "_customization": {
+          "mcr": false
+        }
+      },
+      "conditions": "welcome",
+      "dialog_node": "Welcome"
+    }
+  ],
+  "counterexamples": [],
+  "system_settings": {
+    "off_topic": {
+      "enabled": true
+    },
+    "disambiguation": {
+      "prompt": "Did you mean:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "None of the above"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Did you mean:"
+    },
+    "spelling_auto_correct": true
+  },
+  "learning_opt_out": false,
+  "name": "Movie Ticket",
+  "language": "en",
+  "description": ""
+}
